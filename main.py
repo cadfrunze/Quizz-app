@@ -1,18 +1,16 @@
-﻿import pandas as pd
+import pandas as pd
 from tkinter import *
-from functionalitati import preluare_api
-import random
+from functionalitati import *
 
 BG_COLOR = '#108A2A'
 BUT_TRUE = '#10798A'
 BUT_FALSE = '#8A2410'
 FALSE_BG = '#FF3333'
 TRUE_BG = '#10318A'
+scor = 0
+intrebarea_str: str = generare_question()
 
 preluare_api()
-data = pd.read_csv('./data/data.csv')
-intrebarile = data.intrebarea
-intrebarea_list: list = intrebarile.to_list()
 
 ecran = Tk()
 ecran.title('Quizz Game')
@@ -29,20 +27,27 @@ but_false = Button(text='❌', bg=BUT_FALSE, font=('Bolt', 50), highlightthickne
 but_false.grid(column=1, row=1)
 
 
-def verificare_len(element: str):
-    count = element.count(' ')
-    count -= 1
-    add = random.randint(1, count)
-    element = element[add] + '\n'
-    return element
+def fals():
+    return False
+
+
+def adevarat():
+    global scor
+    if data[data.intrebarea == data.adevarat]:
+        scor += 1
+    continuare_joc()
 
 
 def joc():
-    intrebarea: str = random.choice(intrebarea_list)
-    intrebarea_list.remove(intrebarea)
-    if len(intrebarea) >= 85:
-        intrebarea = verificare_len(intrebarea)
-    canvas.create_text(300, 150, text=intrebarea, font=('italic', 10))
+    global intrebarea_str
+    intrebarea_str = generare_question()
+    if len(intrebarea_str) >= 85:
+        intrebarea = verificare_len(intrebarea_str)
+    canvas.create_text(300, 150, text=intrebarea_str, font=('italic', 10))
+    but_true.config(command=adevarat)
+
+def continuare_joc():
+    ecran.after(1000, joc)
 
 
 joc()

@@ -1,5 +1,6 @@
 import requests
 import pandas as pd
+import random
 
 
 def preluare_api():
@@ -18,4 +19,40 @@ def preluare_api():
     }
     data_csv = pd.DataFrame(data_dict)
     data_csv.to_csv('./data/data.csv', index=False)
+
+
+data = pd.read_csv('./data/data.csv')
+intrebarile = data.intrebarea
+intrebarea_list: list = intrebarile.to_list()
+
+
+def generare_question():
+    intrebarea: str = random.choice(intrebarea_list)
+    intrebarea_list.remove(intrebarea)
+    intrebarea_final = verificare_len(element=intrebarea)
+    return intrebarea_final
+
+
+def verificare_len(element: str) -> str:
+    if len(element) >= 87:
+        list_element: list = element.split(' ')
+        dubluri: list = []
+        for _ in range(3):
+            elem: str = random.choice(list_element)
+            while elem in dubluri:
+                elem: str = random.choice(list_element)
+            dubluri.append(elem)
+            count = list_element.count(elem)
+            elem1 = elem + '\n'
+            list_element.pop(count)
+            list_element.insert(count, elem1)
+        elem_final: str = ' '.join(list_element)
+        return elem_final
+    else:
+        return element
+
+
+print(generare_question())
+
+
 
