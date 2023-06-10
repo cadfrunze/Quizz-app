@@ -26,7 +26,7 @@ intrebarile = data.intrebarea
 intrebarea_list: list = intrebarile.to_list()
 
 
-def generare_question():
+def generare_question() -> str:
     intrebarea: str = random.choice(intrebarea_list)
     intrebarea_list.remove(intrebarea)
     intrebarea_final = verificare_len(element=intrebarea)
@@ -52,7 +52,7 @@ def verificare_len(element: str) -> str:
         return element
 
 
-print(generare_question())
+
 
 
 
