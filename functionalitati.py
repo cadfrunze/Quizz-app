@@ -34,26 +34,19 @@ def generare_question() -> str:
 
 def verificare_len(element: str) -> str:
     if len(element) >= 87:
-        index_list: list = []
-        index_list_prov: list = []
-        for elem in range(len(element)-1):
-            if element[elem] == ' ':
-                index_list.append(elem)
-        index_list.pop(0)
-        index_list.pop(-1)
+        lista_elemente: list = element.split(' ')
+        lista_provizorie: list = []
         for _ in range(4):
-            new_elem: int = random.choice(index_list)
-            while new_elem in index_list_prov:
-                new_elem: int = random.choice(index_list)
-            print(new_elem)
-            element = element[new_elem].replace(element[new_elem], '\n')
+            new_elem: str = random.choice(lista_elemente)
+            while new_elem == lista_elemente[0] or new_elem == lista_elemente[-1] or new_elem in lista_provizorie:
+                new_elem: str = random.choice(lista_elemente)
+            lista_provizorie.append(new_elem)
+            indexul = lista_elemente.index(new_elem)
+            lista_elemente.pop(indexul)
+            new_elem += '\n'
+            lista_elemente.insert(indexul, new_elem)
+        element = ' '.join(lista_elemente)
         print('\n' in element)
         return element
     else:
         return element
-
-
-
-
-
-
