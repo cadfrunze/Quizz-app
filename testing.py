@@ -1,3 +1,7 @@
+from datetime import datetime
+
+with open('./work_log.txt', 'a') as fisier:
+    fisier.writelines(f'Data: {datetime.now().day}/{datetime.now().month}/{datetime.now().year} | Ora: {datetime.now().hour}:{datetime.now().minute}\n')
 import pandas
 
 data_dict = {
