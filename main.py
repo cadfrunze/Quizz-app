@@ -2,7 +2,6 @@ import time
 from tkinter import *
 from functionalitati import preluare_api, generare_question, data, verificare_len
 
-preluare_api()
 BG_COLOR = '#108A2A'
 BUT_TRUE = '#10798A'
 BUT_FALSE = '#8A2410'
@@ -10,6 +9,7 @@ FALSE_BG = '#FF3333'
 TRUE_BG = '#10318A'
 scor = 0
 intrebarea_gen: None = None
+intoarceri = None
 
 ecran = Tk()
 ecran.title('Quizz Game')
@@ -28,24 +28,40 @@ but_false = Button(text='❌', bg=BUT_FALSE, font=('Bolt', 50), highlightthickne
 but_false.grid(column=1, row=1)
 
 
+def culori(boolean: bool, incercari: int):
+    global intoarceri
+    if boolean is True:
+        canvas.config(bg=TRUE_BG)
+
+    else:
+        canvas.config(bg=FALSE_BG)
+        # canvas.config(bg=BG_COLOR)
+
+    if incercari > 0:
+        intoarceri = ecran.after(1000, culori, boolean, incercari - 1)
+
+    else:
+        ecran.after_cancel(intoarceri)
+        joc()
+
+
 def but_adevarat():
-    global scor
+    global scor, intoarceri
     verificare = data[data.intrebarea == intrebarea_gen]
     raspuns: bool = verificare.adevarat.item()
+    culori(raspuns, 2)
     if raspuns is True:
         scor += 1
-    time.sleep(1)
-    joc()
+        canvas.config(bg=BG_COLOR)
 
 
 def but_fals():
-    global scor
+    global scor, intoarceri
     verificare = data[data.intrebarea == intrebarea_gen]
     raspuns: bool = verificare.adevarat.item()
     if raspuns is False:
         scor += 1
     time.sleep(1)
-    joc()
 
 
 def joc():

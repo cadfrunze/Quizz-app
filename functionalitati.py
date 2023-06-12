@@ -21,6 +21,8 @@ def preluare_api():
     data_csv.to_csv('./data/data.csv', index=False)
 
 
+preluare_api()
+
 data = pd.read_csv('./data/data.csv')
 intrebarile = data.intrebarea
 intrebarea_list: list = intrebarile.to_list()
@@ -43,10 +45,8 @@ def verificare_len(element: str) -> str:
             lista_provizorie.append(new_elem)
             indexul = lista_elemente.index(new_elem)
             lista_elemente.pop(indexul)
-            new_elem += '\n'
+            new_elem += 'n'
             lista_elemente.insert(indexul, new_elem)
         element = ' '.join(lista_elemente)
-        print('\n' in element)
         return element
-    else:
-        return element
+    return element
