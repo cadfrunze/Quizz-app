@@ -1,16 +1,12 @@
 from datetime import datetime
 
-with open('./work_log.txt', 'a') as fisier:
-    fisier.writelines(f'Data: {datetime.now().day}/{datetime.now().month}/{datetime.now().year} | Ora: {datetime.now().hour}:{datetime.now().minute}\n')
-import pandas
+an = datetime.now().year
+luna = datetime.now().month
+zi = datetime.now().day
+ora = datetime.now().hour
+minute = datetime.now().minute
 
-data_dict = {
-    "students": ["Maryus", "Iulia", "Sebi"],
-    "skill": [10, 20, 30]
-}
+with open('./work_log.txt', 'r') as fisier:
+    lista = fisier.readlines()
 
-data1 = pandas.DataFrame(data_dict)
-data1.to_csv("testing", index=False)
-new_data = pandas.read_csv('testing')
-new_data1 = new_data[new_data.students == 'Iulia']
-print(new_data1)
+print(lista)

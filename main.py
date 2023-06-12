@@ -1,9 +1,6 @@
 import time
-
-import pandas as pd
 from tkinter import *
 from functionalitati import preluare_api, generare_question, data, verificare_len
-import random
 
 preluare_api()
 BG_COLOR = '#108A2A'
