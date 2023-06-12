@@ -29,7 +29,6 @@ intrebarea_list: list = intrebarile.to_list()
 def generare_question() -> str:
     intrebarea: str = random.choice(intrebarea_list)
     intrebarea_list.remove(intrebarea)
-    print(intrebarea in data.intrebarea.to_list())
     return intrebarea
 
 
@@ -37,9 +36,9 @@ def verificare_len(element: str) -> str:
     if len(element) >= 87:
         list_element: list = element.split(' ')
         dubluri: list = []
-        for _ in range(3):
+        for _ in range(5):
             elem: str = random.choice(list_element)
-            while elem in dubluri:
+            while elem in dubluri or elem == list_element[0] or elem == list_element[-1]:
                 elem: str = random.choice(list_element)
             dubluri.append(elem)
             count = list_element.count(elem)
