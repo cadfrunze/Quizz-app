@@ -132,9 +132,6 @@ LUNA: int = datetime.now().month
 AN: int = datetime.now().year
 DATA_SAVE: str = f'{ZIUA}/{LUNA}/{AN}'
 ORA_SAVE: str = f'{ORA}:{MINUT}:{SECUNDE}'
-ora_list: list = []
-data_list: list = []
-scor_list: list = []
 try:
     file = pd.read_csv('./log_testing.csv')
 
