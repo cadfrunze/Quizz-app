@@ -1,3 +1,5 @@
+# Functii care nu apar UI
+
 import requests
 import pandas as pd
 import random
@@ -45,7 +47,7 @@ def verificare_len(element: str) -> str:
             lista_provizorie.append(new_elem)
             indexul = lista_elemente.index(new_elem)
             lista_elemente.pop(indexul)
-            new_elem += 'n'
+            new_elem += '\n'
             lista_elemente.insert(indexul, new_elem)
         element = ' '.join(lista_elemente)
         return element

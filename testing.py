@@ -17,9 +17,3 @@
 # with open('./work_log.txt', 'a') as fisier1:
 #     fisier1.writelines(lista[-1])
 
-
-test = 'maryaaus'
-print(test)
-new_index = test.index(test[1])
-test = test.replace(test[new_index], 'b')
-print(test)
