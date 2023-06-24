@@ -3,6 +3,7 @@
 import requests
 import pandas as pd
 import random
+import html
 
 
 def preluare_api():
@@ -11,7 +12,7 @@ def preluare_api():
     raspuns.raise_for_status()
     data = raspuns.json()
     list_data = [elem for elem in data['results']]
-    intrebari_data = [elem1['question'] for elem1 in list_data]
+    intrebari_data = [html.unescape(elem1['question']) for elem1 in list_data]
     true_data = [elem3['correct_answer'] for elem3 in list_data]
     false_data = [''.join(elem4['incorrect_answers']) for elem4 in list_data]
     data_dict = {
