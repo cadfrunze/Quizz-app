@@ -20,7 +20,7 @@ ecran.resizable(False, False)
 ecran.config(padx=2, pady=2, bg=BG_COLOR)
 
 canvas = Canvas(width=600, height=600, bg=BG_COLOR, highlightthickness=0)
-textul = canvas.create_text(300, 150, text='', font=('italic', 10))
+textul = canvas.create_text(300, 150,width=280, text='', font=('italic', 10))
 scorul = canvas.create_text(100, 50, text='', fill='orange')
 cron_text = canvas.create_text(300, 50, text='', fill='orange')
 canvas.grid(column=0, row=0, columnspan=2)
